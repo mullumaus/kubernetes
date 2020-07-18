@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-end
+spec:
+  type: ClusterIP
+  prots:
+    - targetPort: 80
+      port: 80
+  selector: #select a set of nodes to map to this service
+    app: myapp
+    type: back-end

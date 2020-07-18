@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: alpha
+spec:
+  containers:
+  - image: redis
+    name: alpha
+  tolerations:
+  - key: "app_type"
+    operator: "Equal"
+    value: "alpha"
+    effect: "NoSchedule"
+

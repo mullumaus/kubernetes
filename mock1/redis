@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  #pod template
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: redis
+    spec:
+      containers:
+        - image: redis:alpine
+          name: redis
+  replicas: 1
+  #different from replication controller
+  #specifies how to identify pods it can acquire
+  #replica set can manage pods that are not created as
+  # part of the replica set, pods created before replica set that
+  # matches the label can also be managed by replica set
+  selector:
+    matchLabels:
+      app: redis

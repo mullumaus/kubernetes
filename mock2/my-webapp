@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-webapp
+  labels:
+    tier: frontend
+spec:
+  #pod template
+  template:
+    metadata:
+      name:  my-webapp
+      labels:
+        tier: frontend
+    spec:
+      containers:
+        - image: nginx
+          name: nginx
+  replicas: 2
+  #different from replication controller
+  #specifies how to identify pods it can acquire
+  #replica set can manage pods that are not created as
+  # part of the replica set, pods created before replica set that
+  # matches the label can also be managed by replica set
+  selector:
+    matchLabels:
+      tier: frontend

@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-video-service
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: ckad-mock-exam-solution.com
+      http:
+        paths:
+          - path: /video
+            backend:
+             serviceName:  my-video-service
+             servicePort: 30093
+
+ #Now that we have two domain names, we create two rules.
+# One for each domain. To split traffic by domain name,
+# we use the host field. The host field in each rule matches the
+# specified value with the domain name used in the request URL and
+# routes traffic to the appropriate backend.

@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-wear-watch
+spec:
+  rules:
+    - host: wear.my-online-store.com
+      http:
+        paths:
+          - backend:
+             serviceName: wear-service
+             servicePort: 80
+    - host: watch.my-online-store.com
+      http:
+        paths:
+          - backend:
+              serviceName: watch-service
+              servicePort: 80
+ #Now that we have two domain names, we create two rules.
+# One for each domain. To split traffic by domain name,
+# we use the host field. The host field in each rule matches the
+# specified value with the domain name used in the request URL and
+# routes traffic to the appropriate backend.
